@@ -18,7 +18,7 @@ func eventHandler(ch chan ed.Event, eventReceiver ed.EventDispatcher, policyRece
 
 	for {
 		event := <-ch
-		fmt.Println(event)
+		fmt.Println(event.Behavior)
 
 		/*
 			for _, policy := range *policies {

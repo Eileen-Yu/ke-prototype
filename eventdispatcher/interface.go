@@ -2,9 +2,9 @@ package eventdispatcher
 
 type Event struct {
 	// TODO: need design
-	rawData  string
-	resource any
-	behavior string
+	RawData  string
+	Resource any
+	Behavior string
 }
 
 type EventDispatcher interface {

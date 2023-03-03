@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 	"path/filepath"
+	"time"
 
 	"eileenyu.io/ebpf-prototype/eventdispatcher"
 
@@ -62,24 +63,18 @@ func (dispatcher *TetragonEventDispatcher) ListenEvent(ch chan eventdispatcher.E
 		return
 	}
 
-	fmt.Println("1")
 	rd := bufio.NewScanner(logStream)
-	fmt.Println("2")
 
 	var line string
 	for {
 		for rd.Scan() {
 			line = rd.Text()
 
-			tetragonEvents := parseTetragonLogLine(line)
+			tetragonEvent := parseTetragonLogLine(line)
 
-			for _, tEvent := range tetragonEvents {
-				normalizedEvent := normalizeTetragonEvent(tEvent)
-				ch <- normalizedEvent
-
-			}
-
-			// fmt.Printf("😄😄😄\n%s\n😉😉😉\n", line)
+			ch <- normalizeTetragonEvent(tetragonEvent, line)
 		}
+
+		time.Sleep(500 * time.Millisecond)
 	}
 }
