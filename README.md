@@ -1,4 +1,4 @@
-## Quick Start
+## Get Start
 
 ### Prerequisite
 
@@ -9,7 +9,7 @@ Make sure you have:
 
 This demo assumes a running node `tetragon-2rs6l`. You will probably need to change the value at [eventdispatcher/tetragon/constants.go](eventdispatcher/tetragon/constants.go).
 
-### Get Start
+### Quick Start
 
 #### 1. Deploy Tetragon by helm:
 
