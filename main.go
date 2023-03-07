@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-
 	ed "eileenyu.io/ebpf-prototype/eventdispatcher"
 	tetragon "eileenyu.io/ebpf-prototype/eventdispatcher/tetragon"
 
@@ -12,23 +10,20 @@ import (
 )
 
 func eventHandler(ch chan ed.Event, eventReceiver ed.EventDispatcher, policyReceiver pc.PolicyCache, matcher mm.Matcher, nt notifier.Notifier) {
-	// policies := policyReceiver.ListPolicies()
+	policies := policyReceiver.ListPolicies()
 
 	go eventReceiver.ListenEvent(ch)
 
 	for {
 		event := <-ch
-		fmt.Println(event.Behavior)
 
-		/*
-			for _, policy := range *policies {
-				if !matcher.Match(event, policy) {
-					continue
-				}
-
-				nt.Notify(event, policy)
+		for _, policy := range *policies {
+			if !matcher.Match(event, policy) {
+				continue
 			}
-		*/
+
+			nt.Notify(event, policy)
+		}
 	}
 }
 

@@ -1,12 +1,12 @@
 package tetragon
 
 type TetragonEvent struct {
-	EventType string // "process_kprob", "process_exec"
+	EventType string // "process_kprobe", "process_exec"
 	Process   TetragonProcess
+	Time      string
 }
 
 type TetragonProcess struct {
-	// TODO
 	ExecutionID  string
 	Pod          TetragonProcessPod
 	FunctionName string

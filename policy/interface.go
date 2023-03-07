@@ -1,6 +1,9 @@
 package policy
 
-type Policy string
+type Policy struct {
+	Name     string
+	Behavior string
+}
 
 type PolicyCache interface {
 	// GetPolicy(string) Policy

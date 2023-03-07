@@ -4,7 +4,7 @@ func GetTetragonEventFromRawData(rawData TetragonLogLineType) TetragonEvent {
 
 	event := TetragonEvent{
 		// TODO
-		EventType: "process_kprob",
+		EventType: "process_kprobe",
 		Process: TetragonProcess{
 			ExecutionID: rawData.ProcessKProbe.Process.ExecutionID,
 			Pod: TetragonProcessPod{
@@ -13,6 +13,7 @@ func GetTetragonEventFromRawData(rawData TetragonLogLineType) TetragonEvent {
 			},
 			FunctionName: rawData.ProcessKProbe.FunctionName,
 		},
+		Time: rawData.Time,
 	}
 
 	return event
